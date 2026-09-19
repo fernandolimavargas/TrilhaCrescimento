@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", sans-serif;
+  --font-display: "Fraunces", serif;
+  --color-ink: #18342d;
+  --color-forest: #1d5647;
+  --color-moss: #8aac55;
+  --color-cream: #f8f6ef;
+  --color-sand: #ebe7d8;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; background: #f8f6ef; color: #18342d; }
+button { font: inherit; }

@@ -1,0 +1,146 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Brasa Church — design system
+ * Paleta: brasa (âmbar/laranja profundo) sobre carvão quente.
+ * Todas as cores em oklch e usadas via tokens semânticos.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-step3: var(--step3);
+  --color-step4: var(--step4);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-display: "Bebas Neue", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Barlow", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.9rem;
+  --background: #050a0f;
+  --foreground: #ffffff;
+  --card: #071b3d;
+  --card-foreground: #ffffff;
+  --popover: #071b3d;
+  --popover-foreground: #ffffff;
+  --primary: #0066ff;
+  --primary-foreground: #ffffff;
+  --secondary: #071b3d;
+  --secondary-foreground: #ffffff;
+  --muted: #0b2a55;
+  --muted-foreground: #a8c1e0;
+  --accent: #0a2450;
+  --accent-foreground: #ffffff;
+  --destructive: #ff4d5e;
+  --destructive-foreground: #ffffff;
+  --success: #8cc63f;
+  --success-foreground: #050a0f;
+  --step3: #1e8bff;
+  --step4: #8cc63f;
+  --border: #0e2f63;
+  --input: #0e2f63;
+  --ring: #008cff;
+  --chart-1: #0066ff;
+  --chart-2: #008cff;
+  --chart-3: #8cc63f;
+  --chart-4: #a4d435;
+  --chart-5: #071b3d;
+  --sidebar: #071b3d;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #0066ff;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #0a2450;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #0e2f63;
+  --sidebar-ring: #008cff;
+
+  --gradient-ember: linear-gradient(135deg, #0066ff 0%, #1e8bff 40%, #8cc63f 100%);
+  --gradient-night: radial-gradient(90% 70% at 100% 0%, #0b3a8f 0%, #071b3d 35%, #050a0f 70%), radial-gradient(70% 50% at 0% 100%, rgb(140 198 63 / 0.10) 0%, transparent 60%);
+  --shadow-ember: 0 18px 40px -20px rgb(0 102 255 / 0.6), 0 0 0 1px rgb(140 198 63 / 0.12);
+}
+
+
+.dark {
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    background-image: var(--gradient-night);
+    background-attachment: fixed;
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1,
+  h2,
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+  }
+}
+
+@utility ember-gradient {
+  background-image: var(--gradient-ember);
+}
+
+@utility ember-shadow {
+  box-shadow: var(--shadow-ember);
+}
+
+@utility surface-card {
+  background-color: color-mix(in oklab, var(--card) 88%, transparent);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(8px);
+}
