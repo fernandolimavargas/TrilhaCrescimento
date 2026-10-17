@@ -1,5 +1,5 @@
 const API_BASE_URL = (
-  import.meta.env.VITE_API_URL ?? "http://localhost:5038"
+  import.meta.env.VITE_API_BASE_URL ?? "http://localhost:5038"
 ).replace(/\/$/, "");
 
 const ACCESS_TOKEN_KEY = "trilha.access-token";
@@ -40,6 +40,7 @@ export type ApiUser = {
   name: string;
   email: string;
   createdAt: string;
+  idTime: number;
 };
 
 export type Attendance = {
@@ -209,9 +210,22 @@ export const api = {
         nome: passo.nome,
       }));
     },
-    checkin: (idTime: number, idUsuario: number, idPasso: number) =>
-      request<string>("/trilha/checkin", { method: "POST", body: JSON.stringify({ idTime, idUsuario, idPasso }) }),
+    checkin: (
+  idTime: number,
+  idUsuario: number,
+  idPasso: number
+) =>
+  request<string>("/trilha/checkin", {
+    method: "POST",
+    body: JSON.stringify({ idTime, idUsuario, idPasso }),
+  }),
 
-    jaFezCheckin: (idUsuario: number) => request<boolean>(`/trilha/jaFezCheckin?idUsuario=${idUsuario}`),
+jaFezCheckin: (
+  idUsuario: number,
+  idPasso: number
+) =>
+  request<boolean>(
+    `/trilha/jaFezCheckin?idUsuario=${idUsuario}&idPasso=${idPasso}`
+  ),
   },
 };

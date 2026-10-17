@@ -67,14 +67,14 @@ function PainelPage() {
     },
   });
 
-  useEffect(() => {
-    const verificarCheckin = async () => {
+  /*useEffect(() => {
+    /*const verificarCheckin = async () => {
       const resultado = await api.trilha.jaFezCheckin(user?.id ?? 0);
       if (resultado) {
         toast.error("Você já registrou presença nesta data.");
       }
     };
-  }, []);
+  }, []);*/
 
   return (
     <div className="space-y-5">
