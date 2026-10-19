@@ -23,7 +23,7 @@ type AuthValue = {
   isAdmin: boolean;
   isLeader: boolean;
   leaderAreas: string[];
-  refreshProfile: () => Promise<void>;
+  refreshProfile: (authenticatedUser?: ApiUser) => Promise<void>;
   signOut: () => Promise<void>;
 };
 
@@ -33,7 +33,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [context, setContext] = useState<ApiUser | null>(null);
 
-  const refreshProfile = useCallback(async () => {
+  const refreshProfile = useCallback(async (authenticatedUser?: ApiUser) => {
+    if (authenticatedUser) {
+      setStoredUserId(authenticatedUser.id);
+      setContext(authenticatedUser);
+      return;
+    }
+
     if (!getAccessToken()) {
       setContext(null);
       return;

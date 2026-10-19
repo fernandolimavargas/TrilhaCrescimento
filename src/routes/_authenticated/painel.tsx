@@ -3,7 +3,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { toast } from "sonner";
-import { api, getStoredUserId } from "@/lib/api";
+import { api } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -48,7 +48,7 @@ function PainelPage() {
 
   const markMutation = useMutation({
     mutationFn: async ({ idTime, idPasso }: { idTime: number; idPasso: number }) => {
-      const idUsuario = getStoredUserId() ?? user?.id;
+      const idUsuario = user?.id;
       if (!idUsuario) throw new Error("Sessão expirada. Entre novamente para continuar.");
       await api.trilha.checkin(idTime, idUsuario, idPasso);
     },
@@ -124,7 +124,7 @@ function PainelPage() {
 
           <Button
             className="h-13 w-full py-3.5 text-base"
-            disabled={markMutation.isPending || !teamId}
+            disabled={markMutation.isPending || !user?.id || !teamId || !passo}
             onClick={() => markMutation.mutate({
               idTime : Number(teamId), 
               idPasso : Number(passo)

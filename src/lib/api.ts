@@ -40,7 +40,7 @@ export type ApiUser = {
   name: string;
   email: string;
   createdAt: string;
-  idTime: number;
+  idTime?: number;
 };
 
 export type Attendance = {

@@ -53,8 +53,8 @@ function AuthPage() {
         setMode("signin");
         toast.success("Cadastro criado! Agora entre com seu e-mail e senha.");
       } else {
-        await api.auth.signIn(email, password);
-        await refreshProfile();
+        const response = await api.auth.signIn(email, password);
+        await refreshProfile(response.user);
         navigate({ to: "/painel", replace: true });
       }
     } catch (error) {
@@ -75,8 +75,8 @@ function AuthPage() {
       setBusy(true);
       void (async () => {
         try {
-          await api.auth.signInWithGoogle(credential);
-          await refreshProfile();
+          const response = await api.auth.signInWithGoogle(credential);
+          await refreshProfile(response.user);
           navigate({ to: "/painel", replace: true });
         } catch (error) {
           const message = error instanceof Error ? error.message : "Não foi possível autenticar com Google.";
