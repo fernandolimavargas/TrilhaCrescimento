@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { CalendarCheck, Flame, ShieldCheck, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -27,12 +27,13 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const { session, loading } = useAuth();
-  const navigate = useNavigate();
+  const { signOut } = useAuth();
 
+  // A página inicial é a entrada pública do QR/link, inclusive em aparelhos
+  // compartilhados. Limpa a sessão anterior antes que outra pessoa entre.
   useEffect(() => {
-    if (!loading && session) navigate({ to: "/painel", replace: true });
-  }, [loading, session, navigate]);
+    void signOut();
+  }, [signOut]);
 
   return (
     <div className="mx-auto flex min-h-screen w-full max-w-lg flex-col justify-between px-5 py-10">
